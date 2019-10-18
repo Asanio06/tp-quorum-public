@@ -283,8 +283,27 @@ l'implémentation de la méthode `createMilkDelivery()`.
 
 *A vous de jouer maintenant !*
 
+WARNING: Pour rappel uniquement une laiterie peut confirmer une
+  livraison. Pensez à changer le compte utilisé au besoin !
+
 Maintenant que c'est fait, en tant que Laiterie Beaufort, cliquez sur
 l'icône du camion (grise actuellement) pour confirmer la livraison.
 
-Cette icône passera en vert pour indiquer que la livraison a été
-confirmée.
+Vous devriez obtenir une popup de ce type :
+
+image::{chapter-img}/exercice-03-first-popup.png[align=center, title-align=center]
+
+Une fois que vous aurez validé cette popup, le back-end va effectuer
+toutes les opérations (vous pouvez consulter les logs du terminal) et
+le front-end se fera présenté une confirmation du bon déroulement :
+
+image::{chapter-img}/exercice-03-second-popup.png[align=center, title-align=center]
+
+En fermant la popup vous constaterez que l'affichage des livraisons
+de lait reflète bien que notre livraison a été acceptée :
+
+image::{chapter-img}/exercice-03-final-result.png[align=center, title-align=center]
+
+Bien évidemment, vous pouvez vérifier que l'Eleveur Hauteluce dispose
+d'un même affichage et que cette livraison est toujours confidentielle
+et donc non visible des autres éleveurs !
