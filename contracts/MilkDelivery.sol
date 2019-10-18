@@ -2,92 +2,67 @@ pragma solidity ^0.4.24;
 
 
 contract MilkDelivery {
-    uint32 public liters; // <1>
-    uint32 public price; // <2>
-    bool public dairyApproval; // <3>
-    bool public consumed; // <4>
-    address public milkProducerAddress; // <5>
-    address public dairyAddress; // <6>
+    uint32 public liters;
+    uint32 public price;
+    bool public dairyApproval;
+    bool public consumed;
+    address public milkProducerAddress;
+    address public dairyAddress;
 
     event MilkDelivered(address indexed milkDeliveryAddress,
                         address indexed milkProducer,
                         address dairyAddress, 
                         uint32 liters, uint32 price);
 
-    constructor(address _dairyAddress) public { // <7>
-        // TODO: check that _dairyAddress address (laiterie) is not empty
-        // tag::implementation[]
+    constructor(address _dairyAddress) public {
+        // check that _dairyAddress address (laiterie) is not empty
         require(_dairyAddress != address(0));
-        // end::implementation[]
-        // TODO: keep track of the milk producer (éleveur) in milkProducerAddress 
-        // tag::implementation[]
+        // keep track of the milk producer (éleveur) in milkProducerAddress 
         milkProducerAddress = msg.sender;
-        // end::implementation[]
-        // TODO: keep track of the dairy address (laiterie) in dairyAddress
-        // tag::implementation[]
+        // keep track of the dairy address (laiterie) in dairyAddress
         dairyAddress = _dairyAddress;
-        // end::implementation[]
-        // TODO: initialize dairyApproval to a meaningful value
-        // tag::implementation[]
+        // initialize dairyApproval to a meaningful value
         dairyApproval = false;
-        // end::implementation[]
-        // TODO: initialize consumed to a meaningful value
-        // tag::implementation[]
+        // initialize consumed to a meaningful value
         consumed = false;
-        // end::implementation[]
     }
 
     /// Keeps track of a milk delivery
     /// @dev should only be called by the milk producers of this contract
-    function sendMilk(uint32 _liters, uint32 _price) public onGoing() { // <7>
-        // TODO: keep track of the number of liters sent and the price
-        // tag::implementation[]
+    function sendMilk(uint32 _liters, uint32 _price) public onGoing() {
+        // keep track of the number of liters sent and the price
         liters = _liters;
         price = _price;
-        // end::implementation[]
-        // TODO: emit a MilkDeliveredEvent
-        // tag::implementation[]
+        // emit a MilkDeliveredEvent
         emit MilkDelivered(address(this), msg.sender, dairyAddress, liters, price);
-        // end::implementation[]
     }
 
     /// Mark the delivery as accepted by the dairy
     function validateDelivery() onGoing() dairyOnly() public {
-        // TODO: implement this! <7>
-        // tag::implementation[]
         dairyApproval = true;
-        // end::implementation[]
     }
 
     /// Return true if the delivery was acknowledged by the dairy (laiterie)
-    function checkDeliveryApproval() public view returns (bool) { // <7>
-        // tag::implementation[]
+    function checkDeliveryApproval() public view returns (bool) {
         return dairyApproval;
-        // end::implementation[]
     }
 
     /// Mark the delivery as consumed (used in order to make some cheese)
-    function consume() external { // <7>
-        // tag::implementation[]
+    function consume() external {
         consumed = true;
-        // end::implementation[]
     }
 
     /// Modifier based on the value of consumed.
     /// @dev if consumed, then the delivery is not onGoing
-    modifier onGoing() { // <7>
-        // tag::implementation[]
+    modifier onGoing() {
         require(!consumed);
         _;
-        // end::implementation[]
     }
 
     /// Modifier ensuring that only the dairy of this milk delivery can make a call
-    modifier dairyOnly() { // <7>
-        // tag::implementation[]
+    modifier dairyOnly() {
         require(msg.sender == dairyAddress);
         _;
-        // end::implementation[]
     }
 
 }
