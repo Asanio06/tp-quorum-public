@@ -83,7 +83,7 @@ WARNING: Ce formulaire ne vérifie pas que seuls des nombres entiers sont
 
 Vous devriez avoir une saisie similaire à celle ci :
 
-NOTE: insérer une capture d'écran !
+image::{chapter-img}/exercice-04-popup.png[align=center, title-align=center]
 
 TIP: La popup de fabrication de fromage ne propose que des livraisons de
 lait qui ont été acceptées par la laiterie et qui n'ont pas déjà été
