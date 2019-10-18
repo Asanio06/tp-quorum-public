@@ -54,6 +54,9 @@ include::../contracts/MilkDelivery.sol[tag=!implementation]
 <6> Adresse Ethereum de la laiterie
 <7> *Ces fonctionnalités sont donc à développer de votre côté !*
 
+Vous pouvez compiler le code de vos smart-contracts en exécutant la commande
+suivante : ```truffle compile```.
+
 NOTE: Développer un test unitaire de MilkDelivery permettant de vérifier son bon
   fonctionnement avant de passer à la suite des exercices du chapitre. +
   Une fois développé mentionner son existence et la manière de le lancer.
@@ -173,7 +176,7 @@ WARNING: Ce formulaire ne vérifie pas que seuls des nombres entiers sont
 
 Vous devriez avoir une saisie similaire à celle ci :
 
-NOTE: insérer une capture d'écran !
+image::{chapter-img}/exercice-02-popup.png[align=center, title-align=center]
 
 
 ===== Lister les livraisons de lait
@@ -248,7 +251,9 @@ du tableau `results` avec les propriétés suivantes :
 
 Si tout est correctement implémenté, vous devriez pouvoir afficher la
 livraison effectuée précédemment entre l'éleveur Hauteluce et la Laiterie
-Beaufort.
+Beaufort :
+
+image::{chapter-img}/exercice-02-end-result.png[align=center, title-align=center]
 
 TIP: N'oubliez pas les confidentialités de données : si vous vous
   _connectez_ à _Eleveur Parly_ vous ne verrez pas cette livraison !
