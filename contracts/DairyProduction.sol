@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 import "./MilkDelivery.sol";
 import "./AddressBook.sol";
@@ -48,7 +48,7 @@ contract DairyProduction {
         return dairy != address(0) && addressBook.checkGeoBoundaries(dairy);
     }
 
-    function getMilkDeliveriesCount() public constant returns(uint) {
+    function getMilkDeliveriesCount() public view returns(uint) {
         // return the number of milk deliveries
         return milkDeliveries.length;
     }
