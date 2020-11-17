@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 import 'openzeppelin-solidity/contracts/ownership/Ownable.sol'; //<1>
 
@@ -17,8 +17,8 @@ contract AddressBook is Ownable { //<2>
     /// @param participant the participant for which the zip code should be added
     /// @param quorum the private TX address of the participant
     /// @param zipCode the zip code of the participant
-    function addParticipantZipCode(string name,
-        address participant, string quorum,
+    function addParticipantZipCode(string calldata name,
+        address participant, string calldata quorum,
         uint32 zipCode) onlyOwner external {
         // add the participants to the mapping <4>
         // tag::implementation[]
