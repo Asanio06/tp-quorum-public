@@ -30,7 +30,7 @@ contract DairyProduction {
     function checkGeoBoundaries() public view returns (bool) {
     }
 
-    function getMilkDeliveriesCount() public constant returns(uint) {
+    function getMilkDeliveriesCount() public view returns(uint) {
         // TODO: return the number of milk deliveries
     }
 
