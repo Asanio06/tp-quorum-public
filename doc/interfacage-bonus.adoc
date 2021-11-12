@@ -1,9 +1,0 @@
-=== Exercices supplémentaires
-
-==== Meilleure gestion des `privateFor` pour les fromages
-
-Actuellement les éleveurs ne sont pas dans les clauses `privateFor` de la fabrication
-de fromage, donc ne voient pas la mise à jour notamment de la propriété `consumed`
-lors de la fabrication du fromage.
-
-Corrigez cela.

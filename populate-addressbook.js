@@ -18,7 +18,7 @@ module.exports = async (config) => {
       await addressBook.addParticipantZipCode(participant, ethereumAddress, quorumAddress, zipCode)
     }
 
-    let r = await addressBook.checkGeoBoundaries(participants['Coopérative'].ethereum_pk)
+    let r = await addressBook.checkGeoBoundaries(participants['Coopérative'].user_account)
     console.log(`Checking if cooperative is in the addressbook: ${r}`)
 
     console.log("Finished!")
