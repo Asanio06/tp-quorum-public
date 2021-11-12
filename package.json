@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.talanlabs.com:blockchain/formation/tp-quorum.git"
+    "url": "git@github.com:TalanLabs/tp-quorum-public.git"
   },
   "keywords": [],
   "author": "",
