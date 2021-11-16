@@ -11,10 +11,10 @@ contract('AddressBook', function(accounts) {
     await addressBook.addParticipantZipCode('Eleveur Parly', milkProducer2, milkProducer2.toString(), 73270, {from: cheeseMaker})
     await addressBook.addParticipantZipCode('Eleveur Bastia', milkProducer3, milkProducer3.toString(), 20200, {from: cheeseMaker})
 
-    assert.equal(await addressBook.checkGeoBoundaries(cheeseMaker), true, "the first participants should be in the correct geo boundaries")
-    assert.equal(await addressBook.checkGeoBoundaries(milkProducer1), true, "the first participants should be in the correct geo boundaries")
-    assert.equal(await addressBook.checkGeoBoundaries(milkProducer2), true, "the first participants should be in the correct geo boundaries")
-    assert.equal(await addressBook.checkGeoBoundaries(milkProducer3), false, "the fourth participant should NOT be in the correct geo boundaries")
+    assert.equal(await addressBook.checkGeoBoundaries('0x809e815596abeb3764abf81be2dc39fbbacc9949'), true, "the first participants should be in the correct geo boundaries")
+    assert.equal(await addressBook.checkGeoBoundaries('0x809e815596abeb3764abf81be2dc39fbbacc9948'), true, "the second participants should be in the correct geo boundaries")
+    assert.equal(await addressBook.checkGeoBoundaries('0x809e815596abeb3764abf81be2dc39fbbacc9947'), true, "the third participants should be in the correct geo boundaries")
+    assert.equal(await addressBook.checkGeoBoundaries('0x809e815596abeb3764abf81be2dc39fbbacc9946'), false, "the fourth participant should NOT be in the correct geo boundaries")
   })
 
   it("should only be allowed to add participants from the owner of the smart-contract", async () => {

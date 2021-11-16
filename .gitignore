@@ -6,3 +6,4 @@ doc/img/*.svg
 build/contracts
 node_modules
 .idea
+.idea
