@@ -45,7 +45,7 @@ const getMilkDeliveries = async (participant) => {
         const blockNumber = log.blockNumber
         // parse log data
         let parsedLog = milkDeliveredInterface.parseLog(log)
-        // console.log(log)
+        console.log(log)
         // console.log(parsedLog)
         if (parsedLog === null) {
           console.error(`Unexpected empty log on block ${blockNumber}!`)
@@ -63,24 +63,12 @@ const getMilkDeliveries = async (participant) => {
           'price': parsedLog.values.price
         }
       })
+      /*.map(result =>{
 
-    for (let index = 0; index < results.length; index++) {
-      const r = results[index]
-      if (typeof r.id === 'undefined') {
-        console.error(`[${index + 1}/${results.length}] Missing milk delivery ID. Ignoring...`)
-        results.splice(index, 1)
-        continue
-      }
-      console.debug(`[${index + 1}/${results.length}] Fetching details of '${r.id}' milk delivery...`)
-      // extract block date from block number
-      r.timestamp = await Blockchain.extractBlockDate(web3, r.block)
-      // extract delivery approval status
-      r.deliveryApproval = await extractDeliveryApproval(participant, r.id)
-      // extract consumed status
-      r.consumed = await extractConsumedStatus(participant, r.id)
-      // pause for a while in order to avoid 'rate limit' errors from Kaleido
-      await Blockchain.sleep(1000)
-    }
+
+        return {...result,timestamp,deliveryA , consumed};
+      })*/
+
 
     // console.log(results)
     return results
