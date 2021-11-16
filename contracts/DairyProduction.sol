@@ -5,10 +5,10 @@ import "./AddressBook.sol";
 
 
 contract DairyProduction {
-    uint32 public quantity; // <1>
-    address[] public milkDeliveries; // <2>
-    address public dairy; // <3>
-    address addressBookAddress; // <4>
+    uint32 public quantity;
+    address[] public milkDeliveries;
+    address public dairy;
+    address addressBookAddress;
 
     event CheeseProduced(address indexed dairyProductionAddress, address indexed dairy, uint32 quantity);
 

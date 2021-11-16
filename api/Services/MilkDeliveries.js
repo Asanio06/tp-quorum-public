@@ -5,6 +5,26 @@ const ethers = require('ethers')
 
 const FILTER_FROM_BLOCK = 0
 
+const extractDeliveryApproval = async (participant, milkDeliveryID) => {
+  let userAccountFrom = credentials.getPublicAddressFromName(participant)
+  // console.log(`Transactions will be sent from '${participant}' having address '${userAccountFrom}'`)
+  let MilkDelivery = await contracts.setupMilkDelivery(participant, userAccountFrom)
+  let milkDelivery = await MilkDelivery.at(milkDeliveryID)
+  const deliveryApproval = await milkDelivery.checkDeliveryApproval()
+  // console.log(`Milk delivery received by dairy? ${deliveryApproval}`)
+  return deliveryApproval
+}
+
+const extractConsumedStatus = async (participant, milkDeliveryID) => {
+  let userAccountFrom = credentials.getPublicAddressFromName(participant)
+  // console.log(`Transactions will be sent from '${participant}' having address '${userAccountFrom}'`)
+  let MilkDelivery = await contracts.setupMilkDelivery(participant, userAccountFrom)
+  let milkDelivery = await MilkDelivery.at(milkDeliveryID)
+  const consumed = await milkDelivery.consumed()
+  // console.log(`Milk delivery consumed? ${consumed}`)
+  return consumed
+}
+
 const getMilkDeliveries = async (participant) => {
   try {
     console.log(`Searching for milk deliveries for '${participant}'`)
@@ -44,7 +64,23 @@ const getMilkDeliveries = async (participant) => {
         }
       })
 
-    // TODO: enrich results array with timestamp, deliveryApproval and consumed data!
+    for (let index = 0; index < results.length; index++) {
+      const r = results[index]
+      if (typeof r.id === 'undefined') {
+        console.error(`[${index + 1}/${results.length}] Missing milk delivery ID. Ignoring...`)
+        results.splice(index, 1)
+        continue
+      }
+      console.debug(`[${index + 1}/${results.length}] Fetching details of '${r.id}' milk delivery...`)
+      // extract block date from block number
+      r.timestamp = await Blockchain.extractBlockDate(web3, r.block)
+      // extract delivery approval status
+      r.deliveryApproval = await extractDeliveryApproval(participant, r.id)
+      // extract consumed status
+      r.consumed = await extractConsumedStatus(participant, r.id)
+      // pause for a while in order to avoid 'rate limit' errors from Kaleido
+      await Blockchain.sleep(1000)
+    }
 
     // console.log(results)
     return results
