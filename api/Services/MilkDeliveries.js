@@ -3,7 +3,7 @@ const contracts = require('../Helpers/Contracts')
 const Blockchain = require('../Helpers/BlockchainHelpers')
 const ethers = require('ethers')
 
-const FILTER_FROM_BLOCK = 0
+const FILTER_FROM_BLOCK = 2420
 
 const extractDeliveryApproval = async (participant, milkDeliveryID) => {
   let userAccountFrom = credentials.getPublicAddressFromName(participant)
@@ -29,6 +29,7 @@ const getMilkDeliveries = async (participant) => {
   try {
     console.log(`Searching for milk deliveries for '${participant}'`)
     const web3 = new ethers.providers.Web3Provider(await contracts.setupWeb3(participant))
+    console.log(`WEB3 INIT `)
 
     const milkDeliveredABI = ['event MilkDelivered(address indexed milkDeliveryAddress, address indexed milkProducer, address dairyAddress, uint32 liters, uint32 price)']
     const milkDeliveredInterface = new ethers.utils.Interface(milkDeliveredABI)
@@ -51,6 +52,7 @@ const getMilkDeliveries = async (participant) => {
           console.error(`Unexpected empty log on block ${blockNumber}!`)
           return []
         }
+
         let milkProducer = credentials.getNameFromPublicAddress(parsedLog.values.milkProducer)
         let dairyName = credentials.getNameFromPublicAddress(parsedLog.values.dairyAddress)
         // console.log(milkProducer)
@@ -63,11 +65,23 @@ const getMilkDeliveries = async (participant) => {
           'price': parsedLog.values.price
         }
       })
-      /*.map(result =>{
 
 
-        return {...result,timestamp,deliveryA , consumed};
-      })*/
+    for (let i = 0; i < results.length; i++) {
+      let userAccountFrom = credentials.getPublicAddressFromName(participant);
+
+      timestamp = await Blockchain.extractBlockDate(web3, results[i].block);
+      Delivery = await contracts.setupMilkDelivery(participant, userAccountFrom);
+      contractDelivery = await Delivery.at(results[i].id);
+      deliveryApproval = await contractDelivery.dairyApproval();
+      consumed = await contractDelivery.consumed();
+
+
+      results[i] = {...results[i], timestamp, deliveryApproval, consumed};
+      console.log(results[i])
+    }
+
+
 
 
     // console.log(results)
@@ -94,11 +108,11 @@ const createMilkDelivery = async (participant, quantity, price, dairy) => {
     console.log(`Resolved private Quorum address of '${dairy}' to '${dairyPrivateAddress}'`)
 
     console.log(`Deploying MilkDelivery smart-contract...`)
-    let milkDelivery = await MilkDelivery.new(dairyPublicAddress, { privateFor: [dairyPrivateAddress, cooperativePrivateAddress] })
+    let milkDelivery = await MilkDelivery.new(dairyPublicAddress, {privateFor: [dairyPrivateAddress, cooperativePrivateAddress]})
     console.log(`MilkDelivery contract deployed at ${milkDelivery.address}`)
 
     console.log(`Sending milk delivery transaction (quantity: ${quantity}, price: ${price})...`)
-    const result = await milkDelivery.sendMilk(quantity, price, { privateFor: [dairyPrivateAddress, cooperativePrivateAddress] })
+    const result = await milkDelivery.sendMilk(quantity, price, {privateFor: [dairyPrivateAddress, cooperativePrivateAddress]})
 
     console.log('Finished!')
     return {contract: milkDelivery.address, sendMilk: result}

@@ -27,7 +27,7 @@ module.exports = {
     cooperative: {
       provider: () => {
         // replace with your own credentials!
-        return new Web3.providers.HttpProvider('https://e0a6uqn6vu:DaaQaatwsUviPZaFZWG77GrFmDbWKch8Luo7e7EhGYU@e0blh9lwnn-e0dzr7l227-rpc.de0-aws.kaleido.io/'); //<1>
+        return new Web3.providers.HttpProvider('https://e0ntm4hhnh:rMY7LcF1sO43cF7Jl-E4eNuN7mVsYEeuwz2rd4pNuys@e0hydn7pns-e0us4a4eb0-rpc.de0-aws.kaleido.io/'); //<1>
       },
       network_id: "*", // Match any network id
       gasPrice: 0,
@@ -39,7 +39,7 @@ module.exports = {
     eleveur_hauteluce_node: {
       provider: () => {
         // replace with your own credentials!
-        return new Web3.providers.HttpProvider('https://e0a6uqn6vu:DaaQaatwsUviPZaFZWG77GrFmDbWKch8Luo7e7EhGYU@e0blh9lwnn-e0t2n4mhl5-rpc.de0-aws.kaleido.io/');
+        return new Web3.providers.HttpProvider('https://e0ntm4hhnh:rMY7LcF1sO43cF7Jl-E4eNuN7mVsYEeuwz2rd4pNuys@e0hydn7pns-e0sp21yihx-rpc.de0-aws.kaleido.io/');
       },
       network_id: "*", // Match any network id
       gasPrice: 0,
@@ -49,7 +49,7 @@ module.exports = {
     eleveur_parly_node: {
       provider: () => {
         // replace with your own credentials!
-        return new Web3.providers.HttpProvider('https://e0a6uqn6vu:DaaQaatwsUviPZaFZWG77GrFmDbWKch8Luo7e7EhGYU@e0blh9lwnn-e0wf3iowgh-rpc.de0-aws.kaleido.io/');
+        return new Web3.providers.HttpProvider('https://e0ntm4hhnh:rMY7LcF1sO43cF7Jl-E4eNuN7mVsYEeuwz2rd4pNuys@e0hydn7pns-e0lyrv84rf-rpc.de0-aws.kaleido.io/');
       },
       network_id: "*", // Match any network id
       gasPrice: 0,
@@ -59,7 +59,7 @@ module.exports = {
     eleveur_bastia_node: {
       provider: () => {
         // replace with your own credentials!
-        return new Web3.providers.HttpProvider('https://e0a6uqn6vu:DaaQaatwsUviPZaFZWG77GrFmDbWKch8Luo7e7EhGYU@e0blh9lwnn-e0qgych2dq-rpc.de0-aws.kaleido.io/');
+        return new Web3.providers.HttpProvider('https://e0ntm4hhnh:rMY7LcF1sO43cF7Jl-E4eNuN7mVsYEeuwz2rd4pNuys@e0hydn7pns-e0u5e4es3n-rpc.de0-aws.kaleido.io/');
       },
       network_id: "*", // Match any network id
       gasPrice: 0,
@@ -69,7 +69,7 @@ module.exports = {
     laiterie_beaufort_node: {
       provider: () => {
         // replace with your own credentials!
-        return new Web3.providers.HttpProvider('https://e0a6uqn6vu:DaaQaatwsUviPZaFZWG77GrFmDbWKch8Luo7e7EhGYU@e0blh9lwnn-e0n5dt4j3h-rpc.de0-aws.kaleido.io/');
+        return new Web3.providers.HttpProvider('https://e0ntm4hhnh:rMY7LcF1sO43cF7Jl-E4eNuN7mVsYEeuwz2rd4pNuys@e0hydn7pns-e0yfeomisk-rpc.de0-aws.kaleido.io/');
       },
       network_id: "*", // Match any network id
       gasPrice: 0,
