@@ -3,7 +3,7 @@ const contracts = require('../Helpers/Contracts')
 const Blockchain = require('../Helpers/BlockchainHelpers')
 const ethers = require('ethers')
 
-const FILTER_FROM_BLOCK = 2420
+const FILTER_FROM_BLOCK = 0
 
 const extractDeliveryApproval = async (participant, milkDeliveryID) => {
   let userAccountFrom = credentials.getPublicAddressFromName(participant)
@@ -29,7 +29,6 @@ const getMilkDeliveries = async (participant) => {
   try {
     console.log(`Searching for milk deliveries for '${participant}'`)
     const web3 = new ethers.providers.Web3Provider(await contracts.setupWeb3(participant))
-    console.log(`WEB3 INIT `)
 
     const milkDeliveredABI = ['event MilkDelivered(address indexed milkDeliveryAddress, address indexed milkProducer, address dairyAddress, uint32 liters, uint32 price)']
     const milkDeliveredInterface = new ethers.utils.Interface(milkDeliveredABI)

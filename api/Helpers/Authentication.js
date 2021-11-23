@@ -6,7 +6,7 @@ const getInurl = (participant) => {
 
 const getNameFromPublicAddress = (addr) => {
   // TODO : Changer le case
-  switch (addr) {
+  switch (addr.toLowerCase()) {
     case AddressBook.participants['Coopérative'].user_account:
       return 'Coopérative'
     case AddressBook.participants['Laiterie Beaufort'].user_account:
