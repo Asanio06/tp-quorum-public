@@ -3,7 +3,7 @@ const contracts = require('../Helpers/Contracts')
 const Blockchain = require('../Helpers/BlockchainHelpers')
 const ethers = require('ethers')
 
-const FILTER_FROM_BLOCK = 850
+const FILTER_FROM_BLOCK = 950
 
 const extractDeliveryApproval = async (participant, milkDeliveryID) => {
   let userAccountFrom = credentials.getPublicAddressFromName(participant)
@@ -67,24 +67,22 @@ const getMilkDeliveries = async (participant) => {
 
 
     for (let i = 0; i < results.length; i++) {
-      try{
+      try {
 
         let userAccountFrom = credentials.getPublicAddressFromName(participant);
-      timestamp = await Blockchain.extractBlockDate(web3, results[i].block);
-      Delivery = await contracts.setupMilkDelivery(participant, userAccountFrom);
+        timestamp = await Blockchain.extractBlockDate(web3, results[i].block);
+        Delivery = await contracts.setupMilkDelivery(participant, userAccountFrom);
         contractDelivery = await Delivery.at(results[i].id);
         deliveryApproval = await contractDelivery.dairyApproval();
         consumed = await contractDelivery.consumed();
-      }catch (e){
+      } catch (e) {
+        results.splice(i, 1);
         continue;
       }
 
 
-
       results[i] = {...results[i], timestamp, deliveryApproval, consumed};
     }
-
-
 
 
     // console.log(results)
@@ -127,10 +125,19 @@ const createMilkDelivery = async (participant, quantity, price, dairy) => {
 
 const validateMilkDelivery = async (participant, milkDeliveryID) => {
   let userAccountFrom = credentials.getPublicAddressFromName(participant);
+  let addressBook = await contracts.getAddressBook(participant)
+  const cooperativePrivateAddress = await addressBook.getQuorumAddress('Coopérative')
+
+
   Delivery = await contracts.setupMilkDelivery(participant, userAccountFrom);
   contractDelivery = await Delivery.at(milkDeliveryID);
-  console.log(await contractDelivery.consumed());
-     contractDelivery.validateDelivery();
+  const milkDeliverPublicAddress = await contractDelivery.milkProducerAddress();
+  console.log(milkDeliverPublicAddress)
+  const milkDeliverPrivateAddress = await credentials.getPrivateAddressFromPublicAddress(milkDeliverPublicAddress).toString();
+  console.log(milkDeliverPrivateAddress)
+
+
+  return contractDelivery.validateDelivery({privateFor: [cooperativePrivateAddress, milkDeliverPrivateAddress]});
 
 
 }

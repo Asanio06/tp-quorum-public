@@ -31,7 +31,7 @@ const getPrivateAddressFromName = (participant) => {
 
 const getPrivateAddressFromPublicAddress = (publicAddress) => {
   return Object.values(AddressBook.participants)
-    .filter(p => p.user_account === publicAddress)
+    .filter(p => p.user_account.toLowerCase() === publicAddress.toLowerCase())
     .map(p => p.quorum_pk)
 }
 

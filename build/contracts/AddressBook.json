@@ -3577,8 +3577,8 @@
         }
       },
       "links": {},
-      "address": "0x16cF7376333eE5c32d1a4049aBd9a218D579bD15",
-      "transactionHash": "0x3e66917aca46786a838f2286dde8b3e75ec7297e2032ccdc6181ef5bce32ea60"
+      "address": "0x2498F8a00dc2bD948B391D6C374437db5957EC0a",
+      "transactionHash": "0x4710b7f924f39e5f70bec6785a200b333dbf14b5a6563f97d5c4f64f60b4c9df"
     },
     "1154013002": {
       "events": {
@@ -3623,7 +3623,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-23T09:02:18.909Z",
+  "updatedAt": "2021-11-23T10:49:28.547Z",
   "networkType": "quorum",
   "devdoc": {
     "methods": {

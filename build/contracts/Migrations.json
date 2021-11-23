@@ -195,7 +195,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 461,
+                        "referencedDeclaration": 463,
                         "src": "168:3:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -279,7 +279,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 461,
+                        "referencedDeclaration": 463,
                         "src": "231:3:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -896,7 +896,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 461,
+                                  "referencedDeclaration": 463,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -987,7 +987,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 461,
+                                  "referencedDeclaration": 463,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1465,8 +1465,8 @@
     "1131001192": {
       "events": {},
       "links": {},
-      "address": "0x8eFbCCf402a2a7206851e479503b127Cf8b898a9",
-      "transactionHash": "0xc2e7e95c43269fdeb554cfaa33bcc36bb30169ad6dad2a3040f082e668b8268a"
+      "address": "0x179d4bEc1eCcF2360fBCe7550Fd345124E60bb19",
+      "transactionHash": "0x5ac15f84c365546d571046278d21671e18d48299ab9717a7e216dead638c564a"
     },
     "1154013002": {
       "events": {},
@@ -1476,7 +1476,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-23T09:02:18.912Z",
+  "updatedAt": "2021-11-23T10:49:28.558Z",
   "networkType": "quorum",
   "devdoc": {
     "methods": {}
