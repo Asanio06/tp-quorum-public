@@ -3540,10 +3540,45 @@
   },
   "networks": {
     "1131001192": {
-      "events": {},
+      "events": {
+        "0x574693dd8e03942385d7a6016874d613060b5190475aba0fcdeb16e8cc20d2de": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "participant",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "zipCode",
+              "type": "uint32"
+            }
+          ],
+          "name": "ParticipantAdded",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x69239423E969065BFC8095C88B6B08c273FD4B0F",
-      "transactionHash": "0x76406dfde75a2aaf8c93be328bef9b233723a2a6bee36a22ea74b0b8f54c0634"
+      "address": "0x16cF7376333eE5c32d1a4049aBd9a218D579bD15",
+      "transactionHash": "0x3e66917aca46786a838f2286dde8b3e75ec7297e2032ccdc6181ef5bce32ea60"
     },
     "1154013002": {
       "events": {
@@ -3588,7 +3623,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-23T08:31:48.252Z",
+  "updatedAt": "2021-11-23T09:02:18.909Z",
   "networkType": "quorum",
   "devdoc": {
     "methods": {
