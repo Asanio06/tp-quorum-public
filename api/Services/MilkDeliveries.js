@@ -3,7 +3,7 @@ const contracts = require('../Helpers/Contracts')
 const Blockchain = require('../Helpers/BlockchainHelpers')
 const ethers = require('ethers')
 
-const FILTER_FROM_BLOCK = 0
+const FILTER_FROM_BLOCK = 850
 
 const extractDeliveryApproval = async (participant, milkDeliveryID) => {
   let userAccountFrom = credentials.getPublicAddressFromName(participant)
@@ -122,6 +122,10 @@ const createMilkDelivery = async (participant, quantity, price, dairy) => {
 }
 
 const validateMilkDelivery = async (participant, milkDeliveryID) => {
+  let userAccountFrom = credentials.getPublicAddressFromName(participant);
+  Delivery = await contracts.setupMilkDelivery(participant, userAccountFrom);
+  contractDelivery = await Delivery.at(milkDeliveryID);
+  await contractDelivery.validateDelivery();
 }
 
 module.exports = {
