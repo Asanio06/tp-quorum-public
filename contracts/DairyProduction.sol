@@ -13,25 +13,40 @@ contract DairyProduction {
     event CheeseProduced(address indexed dairyProductionAddress, address indexed dairy, uint32 quantity);
 
     constructor(address _addressBookAddress) public {
-        // TODO: check that _addressBookAddress address is not empty
-        // TODO: keep track of the address of the addressbook smart-contract
+        require(_addressBookAddress != address(0));
+        addressBookAddress = _addressBookAddress;
     }
 
     function makeCheese(uint32 _quantity, address[] memory _milkDeliveries) public returns (address) {
-        // TODO: keep track of variables quantity, milkDeliveries and dairy
-        // TODO: call each MilkDelivery contract in order to mark it as "consumed"
-        // TODO: emit a CheeseProduced event
-        // TODO: return the address of this smart-contract
+        quantity = _quantity;
+        milkDeliveries = _milkDeliveries;
+        dairy = msg.sender;
+        for(uint i = 0; i < milkDeliveries.length; i++){
+            MilkDelivery milk = MilkDelivery(milkDeliveries[i]);
+            milk.consume();
+        }
+        emit CheeseProduced(address(10), dairy, quantity);
+        return address(10);
     }
 
     /// Checks if all parties in the smart-contract are geo compliant.
     /// @dev checks all milk producers and the dairy using the AddressBook
     /// @return true if all parties are geo compliant
     function checkGeoBoundaries() public view returns (bool) {
+        bool allisgood = true;
+        AddressBook book = AddressBook(addressBookAddress);
+        for(uint i = 0; i < milkDeliveries.length; i++){
+            MilkDelivery milk = MilkDelivery(milkDeliveries[i]);
+            if(!book.checkGeoBoundaries(milk.milkProducerAddress()) || !book.checkGeoBoundaries(milk.dairyAddress())){
+                allisgood = false;
+                break;
+            }
+        }
+        return allisgood;
     }
 
     function getMilkDeliveriesCount() public view returns(uint) {
-        // TODO: return the number of milk deliveries
+        return milkDeliveries.length;
     }
 
 }
