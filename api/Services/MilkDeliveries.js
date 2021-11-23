@@ -73,16 +73,15 @@ const getMilkDeliveries = async (participant) => {
       timestamp = await Blockchain.extractBlockDate(web3, results[i].block);
       Delivery = await contracts.setupMilkDelivery(participant, userAccountFrom);
         contractDelivery = await Delivery.at(results[i].id);
-
+        deliveryApproval = await contractDelivery.dairyApproval();
+        consumed = await contractDelivery.consumed();
       }catch (e){
         continue;
       }
-      deliveryApproval = await contractDelivery.dairyApproval();
-      consumed = await contractDelivery.consumed();
+
 
 
       results[i] = {...results[i], timestamp, deliveryApproval, consumed};
-      console.log(results[i])
     }
 
 
@@ -130,7 +129,10 @@ const validateMilkDelivery = async (participant, milkDeliveryID) => {
   let userAccountFrom = credentials.getPublicAddressFromName(participant);
   Delivery = await contracts.setupMilkDelivery(participant, userAccountFrom);
   contractDelivery = await Delivery.at(milkDeliveryID);
-  await contractDelivery.validateDelivery();
+  console.log(await contractDelivery.consumed());
+     contractDelivery.validateDelivery();
+
+
 }
 
 module.exports = {
